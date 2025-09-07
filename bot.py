@@ -20,8 +20,9 @@ async def chat(update: Update, context: ContextTypes.DEFAULT_TYPE):
     user_message = update.message.text
 
     response = openai.ChatCompletion.create(
-        model="gpt-3.5-turbo",  # Puedes cambiar a gpt-4 si tienes acceso
-        messages=[{"role": "user", "content": user_message}]
+    model="gpt-3.5-turbo",
+    messages=[{"role": "user", "content": user_message}],
+    max_tokens=300  # limita la respuesta, así gastas menos
     )
 
     reply = response["choices"][0]["message"]["content"]
